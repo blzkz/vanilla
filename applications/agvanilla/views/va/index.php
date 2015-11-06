@@ -1,1 +1,1 @@
-<?php echo '<p>CAca</p>'; ?>
+<?php echo '<p>Caca</p>'; ?>

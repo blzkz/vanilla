@@ -3,35 +3,48 @@
 
 if (!isset($Drop))
    $Drop = FALSE; // Safe default - Set to TRUE to drop the table if it already exists.
-   
+
 if (!isset($Explicit))
    $Explicit = FALSE; // Safe default - Set to TRUE to remove all other columns from table.
 
 $Database = Gdn::Database();
+
 $SQL = $Database->SQL(); // To run queries.
 $Construct = $Database->Structure(); // To modify and add database tables.
 $Validation = new Gdn_Validation(); // To validate permissions (if necessary).
+$Px = $Database->DatabasePrefix;
 
 // Add your tables or new columns under here (see example below).
 
 
-
 // Example: New table construction.
-/* 
+/*
 $Construct->Table('ExampleTable')
 	->PrimaryKey('ExampleTableID')
    ->Column('ExampleUserID', 'int', TRUE)
    ->Column('Field1', 'varchar(50)')
    ->Set($Explicit, $Drop); // If you omit $Explicit and $Drop they default to false.
-*/ 
+*/
 
+$Construct->Table('Jam');
+
+$Construct
+  ->PrimaryKey('JamID')
+    ->Column('Name', 'varchar(200)')
+    ->Column('Description', 'text')
+    ->Column('StartDate', 'datetime', NULL)
+    ->Column('FinishDate', 'datetime', NULL)
+    ->Column('DateCreated', 'datetime', NULL)
+    ->Column('DateUpdated', 'datetime', NULL)
+    ->Column('IsPublic', 'tinyint(1)', '1')
+    ->Set($Explicit, $Drop);
 // Example: Add column to existing table.
-/* 
+/*
 $Construct->Table('User')
    ->Column('NewColumnNeeded', 'varchar(255)', TRUE) // Always allow for NULLs unless it's truly required.
-   ->Set(); 
-*/  
-   
+   ->Set();
+*/
+
 /**
  * Column() has the following arguments:
  *

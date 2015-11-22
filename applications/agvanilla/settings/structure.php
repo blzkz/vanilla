@@ -38,6 +38,43 @@ $Construct
     ->Column('DateUpdated', 'datetime', NULL)
     ->Column('IsPublic', 'tinyint(1)', '1')
     ->Set($Explicit, $Drop);
+
+$Construct->Table('JamGame');
+
+$Construct
+    ->Column('JamID', 'int', FALSE, array('primary', 'key'))
+    ->Column('GroupID', 'int', FALSE, array('primary', 'key'))
+    ->Column('Name', 'varchar(200)')
+    ->Column('Description', 'text')
+    ->Column('Submitted', 'tinyint(1)', '0')
+    ->Column('DateCreated', 'datetime', NULL)
+    ->Column('DateUpdated', 'datetime', NULL)
+    ->Column('IsPublic', 'tinyint(1)', '1')
+    ->Set($Explicit, $Drop);
+
+$Construct->Table('JamGroup');
+
+$Construct
+  ->PrimaryKey('GroupID')
+    ->Column('Name', 'varchar(200)')
+    ->Column('Description', 'text')
+    ->Column('DateCreated', 'datetime', NULL)
+    ->Column('DateUpdated', 'datetime', NULL)
+    ->Column('IsPublic', 'tinyint(1)', '1')
+    ->Set($Explicit, $Drop);
+
+$Construct->Table('GroupUser');
+
+$Construct
+  ->PrimaryKey('GroupUserID')
+    ->Column('UserID', 'int', FALSE, 'key')
+    ->Column('UserID', 'int', FALSE, 'key')
+    ->Column('DateCreated', 'datetime', NULL)
+    ->Column('DateUpdated', 'datetime', NULL)
+    ->Column('IsPublic', 'tinyint(1)', '1')
+    ->Set($Explicit, $Drop);
+
+
 // Example: Add column to existing table.
 /*
 $Construct->Table('User')

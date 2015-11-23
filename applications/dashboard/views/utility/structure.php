@@ -10,37 +10,37 @@ switch ($this->data('Step')) {
     case 'scan':
         // Display the scan of the structure.
         if (!empty($this->Data['CapturedSql'])) {
-	$CapturedSql = (array)$this->Data['CapturedSql'];
-	$Url = 'dashboard/utility/structure/'.$this->Data['ApplicationName'].'/0/'.(int)$this->Data['Drop'].'/'.(int)$this->Data['Explicit'];
-	
+            $CapturedSql = (array)$this->Data['CapturedSql'];
+            $Url = 'dashboard/utility/structure/'.$this->Data['ApplicationName'].'/0/'.(int)$this->Data['Drop'].'/'.(int)$this->Data['Explicit'];
+
             if (count($CapturedSql) > 0) {
-	?>
+                ?>
                 <div class="Info"><?php echo t('The following structure changes are required for your database.'); ?></div>
-   <?php
-      echo '<pre class="Sql">';
-      $First = TRUE;
+                <?php
+                echo '<pre class="Sql">';
+                $First = TRUE;
                 foreach ($this->Data['CapturedSql'] as $Sql) {
-         if ($First)
-            $First = FALSE;
-         else
-            echo "\n\n";
-         
-         $Sql = trim(trim($Sql), ';').';';
-         echo htmlspecialchars($Sql);
-      }
-      
-      echo '</pre>';
+                    if ($First)
+                        $First = FALSE;
+                    else
+                        echo "\n\n";
+
+                    $Sql = trim(trim($Sql), ';').';';
+                    echo htmlspecialchars($Sql);
+                }
+
+                echo '</pre>';
             } else if ($this->Data['CaptureOnly']) {
-		?>
+                ?>
                 <div
                     class="Info"><?php echo t('There are no database structure changes required. There may, however, be data changes.'); ?></div>
-		<?php
-	}
+                <?php
+            }
         }
 
         echo '<div class="Buttons">',
             $this->Form->button('Run', array('value' => t('Run structure & data scripts'))),
-      ' ',
+            ' ',
             $this->Form->button('Scan', array('value' => t('Rescan'))),
             '</div>';
         break;
@@ -58,7 +58,7 @@ switch ($this->data('Step')) {
 
         echo '<div class="Buttons">',
             $this->Form->button('Scan'),
-      '</div>';
+            '</div>';
 }
 echo $this->Form->close();
 echo '</div>';
